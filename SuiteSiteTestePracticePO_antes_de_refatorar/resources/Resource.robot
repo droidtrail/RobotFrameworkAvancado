@@ -12,6 +12,7 @@ Abrir navegador
     Open Browser        about:blank   ${BROWSER}
 
 Fechar navegador
+    Capture Page Screenshot
     Close Browser
 
 #### Ações
