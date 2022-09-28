@@ -1,14 +1,16 @@
 *** Settings ***
 Resource            ../resources/Resource.robot
+Resource            ../PO/home.robot
+Resource            ../PO/carrinho.robot
 Test Setup          Abrir navegador
 Test Teardown       Fechar navegador
 
 *** Test Case ***
 Caso de Teste com PO 01: Remover Produtos do Carrinho
-    Acessar a página home do site
-    Adicionar o produto "t-shirt" no carrinho
-    Excluir o produto do carrinho
-    Conferir se o carrinho fica vazio
+    home.Acessar a página home do site
+    home.Adicionar o produto "t-shirt" no carrinho
+    carrinho.Excluir o produto do carrinho
+    carrinho.Conferir se o carrinho fica vazio
 
 ### EXERCÍCIO
 # Caso de Teste com PO 02: Adicionar Cliente

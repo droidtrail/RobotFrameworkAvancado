@@ -3,7 +3,14 @@ Library    SeleniumLibrary
 Library    String
 
 *** Variables ***
-${URL}          http://automationpractice.com
+${HOME_URL}                  http://automationpractice.com
+${HOME_TITLE}                My Store
+${HOME_FIELD_PESQUISAR}      name=submit_search
+${HOME_TOPMENU}              xpath=//*[@id="block_top_menu"]/ul
+${HOME_PRODUCT}              xpath=//*[@id="center_column"]//img[@alt="Faded Short Sleeve T-shirts"]     
+${HOME_BTN_ADDCART}          xpath=//*[@id="add_to_cart"]/button 
+${HOME_BTN_CHECKOUT}         xpath=//*[@id="layer_cart"]//a[@title="Proceed to checkout"]
+${HOME_BTN_PESQUISAR}        name=submit_search
 
 *** Keywords ***
 
@@ -14,25 +21,25 @@ Adicionar o produto "${PRODUTO}" no carrinho
     Clicar no botão "Add to Cart" do produto
     Clicar no botão "Proceed to checkout"
 Acessar a página home do site
-    Go To               ${URL}
-    Wait Until Element Is Visible    xpath=//*[@id="block_top_menu"]/ul
-    Title Should Be     My Store
+    Go To               ${HOME_URL} 
+    Wait Until Element Is Visible    ${HOME_TOPMENU}    
+    Title Should Be    ${HOME_TITLE}     
 
 Digitar o nome do produto "${PRODUTO}" no campo de pesquisa
-    Input Text          name=search_query    ${PRODUTO}
+    Input Text          ${HOME_BTN_PESQUISAR}    ${PRODUTO}
 
 Clicar no botão pesquisar
-    Click Element       name=submit_search
+    Click Element       ${HOME_FIELD_PESQUISAR} 
 
 Clicar no botão "Add to Cart" do produto
-    Wait Until Element Is Visible   xpath=//*[@id="center_column"]//img[@alt="Faded Short Sleeve T-shirts"]
-    Click Element                   xpath=//*[@id="center_column"]//img[@alt="Faded Short Sleeve T-shirts"]
-    Wait Until Element Is Visible   xpath=//*[@id="add_to_cart"]/button
-    Click Button                    xpath=//*[@id="add_to_cart"]/button
+    Wait Until Element Is Visible   ${HOME_PRODUCT}
+    Click Element                   ${HOME_PRODUCT}
+    Wait Until Element Is Visible   ${HOME_BTN_ADDCART}
+    Click Button                    ${HOME_BTN_ADDCART}
 
 Clicar no botão "Proceed to checkout"
-    Wait Until Element Is Visible   xpath=//*[@id="layer_cart"]//a[@title="Proceed to checkout"]
-    Click Element                   xpath=//*[@id="layer_cart"]//a[@title="Proceed to checkout"]
+    Wait Until Element Is Visible   ${HOME_BTN_CHECKOUT}
+    Click Element                   ${HOME_BTN_CHECKOUT}
 
 Adicionar o produto "${PRODUTO}" no carrinho
     Digitar o nome do produto "${PRODUTO}" no campo de pesquisa
